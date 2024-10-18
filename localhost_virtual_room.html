@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Virtual Showroom</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+    #instructions {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      color: white;
+      user-select: none;
+    }
+    #image-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .tile-image {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+    }
+    #controls {
+      position: absolute;
+      top: 235px;
+      left: 249px;
+    }
+    #controls button {
+      font-size: 18px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">Click to start</div>
+  <div id="image-container">
+    <img id="image-left" class="tile-image" src="" style="left: 0px; opacity: 0.5;">
+    <img id="image-center" class="tile-image" src="" style="left: 210px;">
+    <img id="image-right" class="tile-image" src="" style="left: 420px; opacity: 0.5;">
+  </div>
+  <div id="controls">
+    <button id="btn-prev">&lt;</button>
+    <button id="btn-select">Select</button>
+    <button id="btn-next">&gt;</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/PointerLockControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="javascripts\RunVirtual_script.js"></script>
+</body>
+</html>

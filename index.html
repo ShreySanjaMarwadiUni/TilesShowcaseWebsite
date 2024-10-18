@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TileToo</title>
+		<style>
+		header, footer{
+			background-color: #edf5fa; /*d7d7d7*/
+			width:100%;
+			height:120px;
+		}
+		#footerBar{
+			display:flex;
+			align-content:space-between;/*notworking*/
+		}
+		.footerColumns{
+			display:flex;
+			flex-direction:column;
+			align-content:center;
+		}
+		.tile-card {
+			overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+            background-color: #f8f9fa;
+		}
+		.tile-card:hover {
+			transform: scale(1.1);
+		}
+		.tile-image {
+			transition: transform 0.3s ease-in-out;
+			width: 100%;
+			border-bottom: 2px solid lightgray;
+		}
+		.tile-info {
+			background-color: #f0f0f0;
+			padding: 10px;
+		}
+		.category {
+			background-color: lightgray;
+			font-size: 0.9rem;
+			padding: 5px;
+			margin-top: 10px;
+		}
+		
+		/*to show image bigger*/
+		.overlay {
+			display: none; 
+			position: fixed; 
+			z-index: 1000; 
+			left: 0;
+			top: 0;
+			width: 100%; 
+			height: 100%; 
+			background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+		}
+		.overlay-content {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 40%;
+			height: 75%;
+		}
+		.close {
+			position: absolute;
+			top: 15px;
+			right: 35px;
+			color: #fff;
+			font-size: 40px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		</style>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<div class="d-flex justify-content-between align-items-center py-5">
+					<img src="images\logo.png" alt="logo here" style="margin-top:-40px;width:75px;height:75px;border-radius:100%;">
+					<nav>
+						<ul class="nav">
+							<li class="nav-item"><a class="nav-link text-dark" href="index.html">Home</a></li>
+							<li class="nav-item"><a class="nav-link text-dark" href="categories.html">Categories</a></li>
+							<li class="nav-item"><a class="nav-link text-dark" href="virtualroom.html">Virtual Room</a></li>
+							<li class="nav-item"><a class="nav-link text-dark" href="aboutus.html">About us</a></li>
+							<li class="nav-item"><a class="nav-link text-dark" href="contactus.html">Contact us</a></li>
+							<li class="nav-item">
+								<img src="images\signin.png" alt="logo here" style="width:45;height:45px;margin-left:17px;border-radius:7px;margin-top:-25px;background-color:#edf5fa;">
+								<a class="nav-link text-dark" href="signin.html">Sign in</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<div id="imageOverlay" class="overlay">
+			<span class="close" onclick="hideOverlay()">&times;</span>
+			<img class="overlay-content" id="overlayImage">
+		</div>
+		<section class="hero" style="background-image: url('images/hero-background.jpg'); background-size: cover; background-position: center; height: 500px; color: white;">
+			<div class="container h-100 d-flex align-items-center justify-content-center text-center">
+				<div>
+					<h1 style="font-size: 3.5rem; font-weight: bold; color:#f7f7f7;">Welcome to TileToo</h1>
+					<p style="font-size: 1.5rem; margin: 20px 0;color:#f7f7f7;">Discover the best ceramic tiles for your home and office</p>
+					<a href="categories.html" class="btn btn-primary btn-lg">Explore Categories</a>
+				</div>
+			</div>
+		</section>
+		<section class="tiles-section py-5">
+			<div class="container">
+				<h2 class="text-center mb-4">Our Most Liked Tiles</h2>
+				<div class="row">
+					<!-- Tile 1 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Stonescape - Porcelain.jpeg" alt="Stonescape" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Stonescape</h5>
+								<p class="category">Porcelain, Mixed Earth Tones, Mosaic Pattern</p>
+								<p class="description">Natural, textured tile blending with outdoor environments.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 2 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 1 Woodland Oak - Ceramic.jpeg" alt="Woodland Oak" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Woodland Oak</h5>
+								<p class="category">Ceramic, Warm Wood Tone, Plank Pattern</p>
+								<p class="description">Cozy, wood-look tile for rustic living rooms.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 3 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Calacatta Oasis.jpeg" alt="Terracotta" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Calacatta Oasis</h5>
+								<p class="category">Porcelain, Warm Red, tile Pattern</p>
+								<p class="description">Rustic, earthy tile perfect for outdoor spaces.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 4 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Glossy Black - Glass.jpeg" alt="Glossy Black" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Glossy Black</h5>
+								<p class="category">Glass, Deep Black, Brick-Like Pattern</p>
+								<p class="description">Sleek, dramatic tile for sophisticated kitchen styles.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 5 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 3 Sandstone Beige - Travertine.jpeg" alt="Sandstone Beige" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Sandstone Beige</h5>
+								<p class="category">Travertine, Warm Beige, Random Variation Pattern</p>
+								<p class="description">Natural, slip-resistant tile ideal for pool areas.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 6 -->
+					<div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 1- Elegant Oasis.jpeg" alt="Tuscan Terracotta" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Tuscan Terracotta</h5>
+                                <p class="category">Ceramic, Warm Red, Brick-Like Pattern</p>
+								<p class="description">Cozy, rustic tile evoking Italian countryside charm.</p>
+                            </div>
+                        </div>
+                    </div>
+					<!-- Tile 7 -->
+					<div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 2 River Rock - Porcelain.jpeg" alt="River Rock" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>River Rock</h5>
+                                <p class="category">Porcelain, Earthy Gray, Natural Stone Pattern</p>
+								<p class="description">Durable, slip-resistant tile resembling river rocks.</p>
+                            </div>
+                        </div>
+                    </div>
+					<!-- Tile 8 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Marble Mosaic - Marble.jpeg" alt="Marble Mosaic" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Marble Mosaic</h5>
+								<p class="category">Marble, Mixed Gray/White, Mosaic Pattern</p>
+								<p class="description">Elegant, sophisticated tile for luxurious bathrooms.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="tiles-section py-5">
+			<div class="container">
+				<h2 class="text-center mb-4">Our Best Selling Tiles</h2>
+				<div class="row">
+					<!-- Tile 1 -->
+					<div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 3 Sandy Beige - Travertine.jpeg" alt="Sandy Beige" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Sandy Beige</h5>
+                                <p class="category">Travertine, Warm Beige, Random Variation Pattern</p>
+								<p class="description">Warm, natural tile perfect for kitchen floors.</p>
+                            </div>
+                        </div>
+                    </div>
+					<!-- Tile 2 -->
+					<div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 2 Glacier Slate - Porcelain.jpeg" alt="Glacier Slate" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Glacier Slate</h5>
+                                <p class="category">Porcelain, Cool Gray, Natural Stone Pattern</p>
+								<p class="description">Sleek, modern tile with a sophisticated, icy appearance.</p>
+                            </div>
+                        </div>
+                    </div>
+					<!-- Tile 3 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Sleek Gray - Ceramic.jpeg" alt="Sleek Gray" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Sleek Gray</h5>
+								<p class="category">Ceramic, Light Gray, Linear Pattern</p>
+								<p class="description">Modern, minimalist tile for contemporary living spaces.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 4 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Marble Effect - Porcelain.jpeg" alt="Marble Effect" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Marble Effect</h5>
+								<p class="category">Porcelain, Mixed Gray/White, Marble Pattern</p>
+								<p class="description">Elegant, sophisticated tile for luxurious living rooms.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 5 -->
+					<div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 4 Mocha Stone - Porcelain.jpeg" alt="Mocha Stone" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Mocha Stone</h5>
+                                <p class="category">Porcelain, Earthy Brown, Stone-Inspired Pattern</p>
+								<p class="description">Rich, earthy tile adding warmth to kitchen spaces.</p>
+                            </div>
+                        </div>
+                    </div>
+					<!-- Tile 6 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Textured White - Ceramic.jpeg" alt="Textured White" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Textured White</h5>
+								<p class="category">Ceramic, Crisp White, Textured Pattern</p>
+								<p class="description">Unique, decorative tile adding visual interest.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 7 -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 4 Gray Granite - Porcelain.jpeg" alt="Gray Granite" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Gray Granite</h5>
+								<p class="category">Porcelain, Cool Gray, Granite-Inspired Pattern</p>
+								<p class="description">Durable, low-maintenance tile for high-traffic outdoor areas.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 8 -->
+					<div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 4 Coastal Cream - Marble.jpeg" alt="Coastal Cream" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Coastal Cream</h5>
+                                <p class="category">Marble, Creamy White, Vein-Cut Pattern</p>
+								<p class="description">Elegant, coastal-inspired tile for luxurious bathrooms.</p>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</section>
+		<footer style="padding: 20px;height:200px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<h5>TileToo</h5>
+						<ul class="list-unstyled">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="categories.html">Categories</a></li>
+							<li><a href="virtualroom.html">Virtual Room</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
+							<li><a href="contactus.html">Contact Us</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h5>Contact</h5>
+						<ul class="list-unstyled">
+							<li>Email: info@tiletoo.com</li>
+							<li>Phone: +123 456 7890</li>
+							<li>Address: 123 Main Street, City</li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h5>Follow Us</h5>
+						<ul class="list-unstyled">
+							<li><a href="#">Facebook</a></li>
+							<li><a href="#">Instagram</a></li>
+							<li><a href="#">Twitter</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2">
+						<h5>Email Us</h5>
+						<input type="text" name="customerEmailID" placeholder="enteryouremail.com">
+						<br>
+						<br>
+						<button>Send</button>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		function showOverlay(src) {
+			// Display the overlay and set the image source
+			document.getElementById('imageOverlay').style.display = 'block';
+			document.getElementById('overlayImage').src = src;
+		}
+
+		function hideOverlay() {
+			// Hide the overlay
+			document.getElementById('imageOverlay').style.display = 'none';
+		}
+	</script>
+</html>

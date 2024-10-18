@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categories</title>
+    <style>
+        header, footer {
+            background-color: #edf5fa;
+            width: 100%;
+            height: 120px;
+        }
+		
+		.overlay {
+			display: none; 
+			position: fixed; 
+			z-index: 1000; 
+			left: 0;
+			top: 0;
+			width: 100%; 
+			height: 100%; 
+			background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+		}
+
+		/* Modal Content (the image) */
+		.overlay-content {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 40%;
+			height: 75%;
+		}
+
+		/* Close Button */
+		.close {
+			position: absolute;
+			top: 15px;
+			right: 35px;
+			color: #fff;
+			font-size: 40px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+        /* Tabs Styling */
+        .tab-container {
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .tab1, 
+		.tab2 {
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            margin-right: 5px;
+        }
+
+        .tab1.active, 
+		.tab2.active {
+            background-color: white;
+            border-bottom: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .tab-content1,
+		.tab-content2{
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+
+        .tab-content1.active,
+		.tab-content2.active{
+            display: block;
+        }
+
+        /* Tile Card Styling */
+        .tile-card {
+            overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+            background-color: #f8f9fa;
+        }
+
+        .tile-card:hover {
+            transform: scale(1.1);
+        }
+
+        .tile-image {
+            transition: transform 0.3s ease-in-out;
+            width: 100%;
+            border-bottom: 2px solid lightgray;
+        }
+
+        .tile-info {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .category {
+            background-color: lightgray;
+            font-size: 0.9rem;
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        /* Custom styling */
+        h5, p {
+            margin: 0;
+        }
+    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center py-5">
+            <img src="images/logo.png" alt="logo here" style="margin-top:-40px;width:75px;height:75px;border-radius:100%;">
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="categories.html">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="virtualroom.html">Virtual Room</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="aboutus.html">About us</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="contactus.html">Contact us</a></li>
+                    <li class="nav-item">
+                        <img src="images/signin.png" alt="logo here" style="width:45;height:45px;margin-left:17px;border-radius:7px;margin-top:-25px;background-color:#edf5fa;">
+                        <a class="nav-link text-dark" href="signin.html">Sign in</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<div id="imageOverlay" class="overlay">
+    <span class="close" onclick="hideOverlay()">&times;</span>
+    <img class="overlay-content" id="overlayImage">
+</div>
+<!-- Floor Tiles Section -->
+<section class="tiles-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Floor Tiles</h2>
+        <div class="tab-container">
+            <!-- Tabs for Floor Tiles Categories -->
+            <div class="tabs">
+                <div class="tab1 active" data-tab="bathroom-floor">Bathroom Floor Tiles</div>
+                <div class="tab1" data-tab="kitchen-floor">Kitchen Floor Tiles</div>
+                <div class="tab1" data-tab="living-room-floor">Living Room Floor Tiles</div>
+                <div class="tab1" data-tab="outdoor-floor">Outdoor Floor Tiles</div>
+            </div>
+
+            <!-- Bathroom Floor Tiles -->
+            <div class="tab-content1 active" id="bathroom-floor">
+                <div class="row">
+                    <!-- Tile 1 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 1 Sea Breeze - Ceramic.jpeg" alt="Sea Breeze" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Sea Breeze</h5>
+                                <p class="category">Ceramic, Soft Blue, Wavy Pattern</p>
+								<p class="description">Calming, ocean-inspired tile perfect for bathroom floors.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tile 2 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 2 River Rock - Porcelain.jpeg" alt="River Rock" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>River Rock</h5>
+                                <p class="category">Porcelain, Earthy Gray, Natural Stone Pattern</p>
+								<p class="description">Durable, slip-resistant tile resembling river rocks.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tile 3 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 3 Tidal Wave - Glass.jpeg" alt="Tidal Wave" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Tidal Wave</h5>
+                                <p class="category">Glass, Shimmering Aqua, Linear Pattern</p>
+								<p class="description">Vibrant, aquatic tile adding visual interest.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tile 4 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 4 Coastal Cream - Marble.jpeg" alt="Coastal Cream" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Coastal Cream</h5>
+                                <p class="category">Marble, Creamy White, Vein-Cut Pattern</p>
+								<p class="description">Elegant, coastal-inspired tile for luxurious bathrooms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kitchen Floor Tiles -->
+            <div class="tab-content1" id="kitchen-floor">
+                <div class="row">
+                    <!-- Tile 1 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 1- Elegant Oasis.jpeg" alt="Tuscan Terracotta" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Tuscan Terracotta</h5>
+                                <p class="category">Ceramic, Warm Red, Brick-Like Pattern</p>
+								<p class="description">Cozy, rustic tile evoking Italian countryside charm.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tile 2 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 2 Glacier Slate - Porcelain.jpeg" alt="Glacier Slate" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Glacier Slate</h5>
+                                <p class="category">Porcelain, Cool Gray, Natural Stone Pattern</p>
+								<p class="description">Sleek, modern tile with a sophisticated, icy appearance.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tile 3 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 3 Sandy Beige - Travertine.jpeg" alt="Sandy Beige" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Sandy Beige</h5>
+                                <p class="category">Travertine, Warm Beige, Random Variation Pattern</p>
+								<p class="description">Warm, natural tile perfect for kitchen floors.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tile 4 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="tile-card">
+                            <img src="images/Tiles/Tile 4 Mocha Stone - Porcelain.jpeg" alt="Mocha Stone" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+                            <div class="tile-info text-center">
+                                <h5>Mocha Stone</h5>
+                                <p class="category">Porcelain, Earthy Brown, Stone-Inspired Pattern</p>
+								<p class="description">Rich, earthy tile adding warmth to kitchen spaces.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			<!-- Living Room Floor Tiles -->
+			<div class="tab-content1" id="living-room-floor">
+				<div class="row">
+					<!-- Tile 1: Woodland Oak -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 1 Woodland Oak - Ceramic.jpeg" alt="Woodland Oak" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Woodland Oak</h5>
+								<p class="category">Ceramic, Warm Wood Tone, Plank Pattern</p>
+								<p class="description">Cozy, wood-look tile for rustic living rooms.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 2: Slate Gray -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 2 Slate Gray - Porcelain.jpeg" alt="Slate Gray" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Slate Gray</h5>
+								<p class="category">Porcelain, Dark Gray, Linear Pattern</p>
+								<p class="description">Modern, sleek tile perfect for contemporary spaces.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 3: Creamy Marble -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 3 Creamy Marble - Marble.jpeg" alt="Creamy Marble" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Creamy Marble</h5>
+								<p class="category">Marble, Soft Cream, Vein-Cut Pattern</p>
+								<p class="description">Elegant, sophisticated tile for luxurious living rooms.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 4: Earthstone -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 4 Earthstone - Porcelain.jpeg" alt="Earthstone" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Earthstone</h5>
+								<p class="category">Porcelain, Earthy Brown, Natural Stone Pattern</p>
+								<p class="description">Warm, natural tile blending with earthy decor.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Outdoor Floor Tiles -->
+			<div class="tab-content1" id="outdoor-floor">
+				<div class="row">
+					<!-- Tile 1: Terracotta Red -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 1 Terracotta Red - Ceramic.jpeg" alt="Terracotta Red" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Terracotta Red</h5>
+								<p class="category">Ceramic, Vibrant Red, Brick-Like Pattern</p>
+								<p class="description">Durable, weather-resistant tile perfect for outdoor spaces.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 2: Slate Black -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 2 Slate Black - Porcelain.jpeg" alt="Slate Black" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Slate Black</h5>
+								<p class="category">Porcelain, Dark Gray, Linear Pattern</p>
+								<p class="description">Sleek, modern tile for contemporary outdoor designs.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 3: Sandstone Beige -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 3 Sandstone Beige - Travertine.jpeg" alt="Sandstone Beige" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Sandstone Beige</h5>
+								<p class="category">Travertine, Warm Beige, Random Variation Pattern</p>
+								<p class="description">Natural, slip-resistant tile ideal for pool areas.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 4: Gray Granite -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Tile 4 Gray Granite - Porcelain.jpeg" alt="Gray Granite" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Gray Granite</h5>
+								<p class="category">Porcelain, Cool Gray, Granite-Inspired Pattern</p>
+								<p class="description">Durable, low-maintenance tile for high-traffic outdoor areas.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Wall Tiles Section -->
+<section class="tiles-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Wall Tiles</h2>
+        <div class="tab-container">
+            <!-- Tabs for Wall Tiles Categories -->
+            <div class="tabs">
+                <div class="tab2 active" data-tab="bathroom-wall">Bathroom Wall Tiles</div>
+                <div class="tab2" data-tab="kitchen-wall">Kitchen Wall Tiles</div>
+                <div class="tab2" data-tab="living-room-wall">Living Room Wall Tiles</div>
+                <div class="tab2" data-tab="outdoor-wall">Outdoor Wall Tiles</div>
+            </div>
+
+            <!-- Bathroom Wall Tiles -->
+			<div class="tab-content2 active" id="bathroom-wall">
+				<div class="row">
+					<!-- Tile 1: Seafoam Green -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Seafoam Green - Glass.jpeg" alt="Seafoam Green" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Seafoam Green</h5>
+								<p class="category">Glass, Soft Green, Mosaic Pattern</p>
+								<p class="description">Calming, aquatic tile perfect for bathroom walls.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 2: White Subway -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/White Subway - Ceramic.jpeg" alt="White Subway" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>White Subway</h5>
+								<p class="category">Ceramic, Crisp White, Brick-Like Pattern</p>
+								<p class="description">Classic, clean tile for traditional bathrooms.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 3: Ocean Blue -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Ocean Blue - Porcelain.jpeg" alt="Ocean Blue" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Ocean Blue</h5>
+								<p class="category">Porcelain, Deep Blue, Linear Pattern</p>
+								<p class="description">Dramatic, ocean-inspired tile adding visual interest.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 4: Marble Mosaic -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Marble Mosaic - Marble.jpeg" alt="Marble Mosaic" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Marble Mosaic</h5>
+								<p class="category">Marble, Mixed Gray/White, Mosaic Pattern</p>
+								<p class="description">Elegant, sophisticated tile for luxurious bathrooms.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Kitchen Wall Tiles -->
+			<div class="tab-content2" id="kitchen-wall">
+				<div class="row">
+					<!-- Tile 1: Creamy White -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Creamy White - Ceramic.jpeg" alt="Creamy White" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Creamy White</h5>
+								<p class="category">Ceramic, Soft White, Brick-Like Pattern</p>
+								<p class="description">Classic, clean tile perfect for traditional kitchens.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 2: Metallic Gray -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Metallic Gray - Porcelain.jpeg" alt="Metallic Gray" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Metallic Gray</h5>
+								<p class="category">Porcelain, Dark Gray, Linear Pattern</p>
+								<p class="description">Modern, industrial-chic tile for contemporary kitchens.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 3: Warm Beige -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Warm Beige - Ceramic.jpeg" alt="Warm Beige" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Warm Beige</h5>
+								<p class="category">Ceramic, Soft Beige, Natural Stone Pattern</p>
+								<p class="description">Cozy, earthy tile for rustic kitchen designs.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 4: Glossy Black -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Glossy Black - Glass.jpeg" alt="Glossy Black" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Glossy Black</h5>
+								<p class="category">Glass, Deep Black, Brick-Like Pattern</p>
+								<p class="description">Sleek, dramatic tile for sophisticated kitchen styles.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Living Room Wall Tiles -->
+			<div class="tab-content2" id="living-room-wall">
+				<div class="row">
+					<!-- Tile 1: Earth Tone -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Earth Tone - Porcelain.jpeg" alt="Earth Tone" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Earth Tone</h5>
+								<p class="category">Porcelain, Warm Brown, Natural Stone Pattern</p>
+								<p class="description">Warm, inviting tile for cozy living rooms.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 2: Sleek Gray -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Sleek Gray - Ceramic.jpeg" alt="Sleek Gray" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Sleek Gray</h5>
+								<p class="category">Ceramic, Light Gray, Linear Pattern</p>
+								<p class="description">Modern, minimalist tile for contemporary living spaces.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 3: Textured White -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Textured White - Ceramic.jpeg" alt="Textured White" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Textured White</h5>
+								<p class="category">Ceramic, Crisp White, Textured Pattern</p>
+								<p class="description">Unique, decorative tile adding visual interest.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 4: Marble Effect -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Marble Effect - Porcelain.jpeg" alt="Marble Effect" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Marble Effect</h5>
+								<p class="category">Porcelain, Mixed Gray/White, Marble Pattern</p>
+								<p class="description">Elegant, sophisticated tile for luxurious living rooms.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Outdoor Wall Tiles -->
+			<div class="tab-content2" id="outdoor-wall">
+				<div class="row">
+					<!-- Tile 1: Terracotta -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Calacatta Oasis.jpeg" alt="Terracotta" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Calacatta Oasis</h5>
+								<p class="category">Porcelain, Warm Red, tile Pattern</p>
+								<p class="description">Rustic, earthy tile perfect for outdoor spaces.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 2: Slate Gray -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Slate Gray - Porcelain.jpeg" alt="Slate Gray" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Slate Gray</h5>
+								<p class="category">Porcelain, Dark Gray, Natural Stone Pattern</p>
+								<p class="description">Durable, low-maintenance tile for exterior walls.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 3: Stonescape -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Stonescape - Porcelain.jpeg" alt="Stonescape" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Stonescape</h5>
+								<p class="category">Porcelain, Mixed Earth Tones, Mosaic Pattern</p>
+								<p class="description">Natural, textured tile blending with outdoor environments.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Tile 4: Glossy White -->
+					<div class="col-md-3 mb-4">
+						<div class="tile-card">
+							<img src="images/Tiles/Glossy White - Glass.jpeg" alt="Glossy White" class="tile-image img-fluid" onclick="showOverlay(this.src)">
+							<div class="tile-info text-center">
+								<h5>Glossy White</h5>
+								<p class="category">Glass, Crisp White, Brick-Like Pattern</p>
+								<p class="description">Bright, reflective tile ideal for outdoor accent walls.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</section>
+
+<footer style="padding: 20px;height:200px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5>TileToo</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="virtualroom.html">Virtual Room</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Contact</h5>
+                <ul class="list-unstyled">
+                    <li>Email: info@tiletoo.com</li>
+                    <li>Phone: +123 456 7890</li>
+                    <li>Address: 123 Main Street, City</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Follow Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <h5>Email Us</h5>
+                <input type="text" name="customerEmailID" placeholder="enteryouremail.com">
+                <br><br>
+                <button>Send</button>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Tab functionality
+    document.querySelectorAll('.tab1').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.tab1').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content1').forEach(tc => tc.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+        });
+    });
+	
+	document.querySelectorAll('.tab2').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.tab2').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content2').forEach(tc => tc.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+        });
+    });
+	
+	function showOverlay(src) {
+        // Display the overlay and set the image source
+        document.getElementById('imageOverlay').style.display = 'block';
+        document.getElementById('overlayImage').src = src;
+    }
+
+    function hideOverlay() {
+        // Hide the overlay
+        document.getElementById('imageOverlay').style.display = 'none';
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
